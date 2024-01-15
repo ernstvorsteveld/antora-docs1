@@ -1,0 +1,57 @@
+@startuml "hexagon-org"
+
+top to bottom direction
+
+package "com.treasurup.module.adapter.in.web"  as "A" {
+    class ModuleController
+}
+
+package "com.treasurup.module.adapter.in.queue" as "B" {
+    class ModuleListener
+}
+
+
+package "com.treasurup.module.adapter.out.persistence" {
+    class ModuleDataImpl
+}
+
+
+package "com.treasurup.module.application.domain.service" as "D" {
+    class ModuleUseCaseWebImpl
+    class ModuleUseCaseQueueImpl
+    interface ModuleUseCase
+
+    ModuleUseCaseWebImpl --> ModuleUseCase
+    ModuleUseCaseQueueImpl --> ModuleUseCase
+
+   ModuleUseCase <|-- ModuleUseCaseImpl
+}
+
+package "com.treasurup.module.application.domain.model" as "M" {
+    class DomainType
+
+    DomainType <- ModuleUseCaseImpl  
+}
+
+package "com.treasurup.module.application.port.in" as "PI" {
+    interface ModuleUseCaseWeb
+    interface ModuleUseCaseQueue
+
+    ModuleController --> ModuleUseCaseWeb
+    ModuleListener --> ModuleUseCaseQueue
+    ModuleUseCaseWeb <|-- ModuleUseCaseWebImpl
+    ModuleUseCaseQueue <|-- ModuleUseCaseQueueImpl
+}
+
+package "com.treasurup.module.application.port.out" as "PO" {
+    interface LoadModuleDataPort
+    interface UpdateModuleDataPort
+
+    ModuleUseCaseImpl --> LoadModuleDataPort
+    ModuleUseCaseImpl --> UpdateModuleDataPort
+    LoadModuleDataPort <|-- ModuleDataImpl
+    UpdateModuleDataPort <|-- ModuleDataImpl
+}
+
+
+@enduml

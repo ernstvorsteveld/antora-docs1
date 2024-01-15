@@ -1,1 +1,8 @@
 = ROOT index docs1
+
+== Example of an include of a plantuml file
+
+[plantuml,my-schema,svg]
+....
+include::partial$diagrams/hexagon-org.pu[]
+....
