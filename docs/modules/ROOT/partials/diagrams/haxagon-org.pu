@@ -11,7 +11,7 @@ package "com.treasurup.module.adapter.in.queue" as "B" {
 }
 
 
-package "com.treasurup.module.adapter.out.persistence" {
+package "com.treasurup.module.adapter.out.persistence" as "P" {
     class ModuleDataImpl
 }
 
