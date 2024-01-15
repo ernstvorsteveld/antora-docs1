@@ -2,7 +2,7 @@
 
 == Example of an include of a plantuml file
 
-[plantuml,my-schema,svg]
-....
-include::partial$diagrams/hexagon-org.pu[]
-....
+[plantuml,hexagon-org,svg]
+----
+include::partial$diagrams/haxagon-org.pu[]
+----
